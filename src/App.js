@@ -1,25 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import "bootswatch/dist/darkly/bootstrap.min.css";
+import "./App.css";
+
+import Navigation from "./components/Navigation";
+import Login from "./components/Login";
+import Movies from "./components/Movies";
+import Categories from "./components/Categories";
+import CategoryMovies from "./components/CategoryMovies";
+import Rentals from "./components/Rentals";
+import MovieRentals from './components/MovieRentals'
+import Users from './components/Users'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Navigation />
+      <div className="container p-3">
+        <Route path="/" exact component={Movies} />
+        <Route path="/categorias" exact component={Categories} />
+        <Route path="/categorias/peliculas" exact component={CategoryMovies} />
+        <Route path="/rentas" component={Rentals} />
+        <Route path="/pelicula/rentas" component={MovieRentals} />
+        <Route path="/usuarios" component={Users} />
+        <Route path="/ingresar" component={Login} />
+      </div>
+    </Router>
   );
 }
 
